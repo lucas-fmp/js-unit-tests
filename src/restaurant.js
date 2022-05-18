@@ -95,36 +95,30 @@
 
 const restaurant = {};
 
+const orderFromMenu = (string) => {
+  restaurant.consumption.push(string);
+  return restaurant;
+};
+
 const createMenu = (object) => {
-  const menu = () => object;
-  restaurant.fetchMenu = menu();
-  restaurant.comsumption = [];
-  restaurant.order = function addComsumption(str) {
-    const arr = restaurant.comsumption;
-    arr.push(str);
-  };
-  restaurant.pay = function sum() {
-    if (restaurant.consumption !== undefined) {
-      let total = 0;
-      for (let index = 0; index < restaurant.consumption.length; index += 1) {
-        for (let index2 = 0; index2 < Object.keys(restaurant).length; index2 += 1) {
-          if (restaurant.consumption[index] === Object.keys(restaurant)[index2]) {
-          total += Object.values(restaurant[index2]);
-          }
-        }
-      }
-    }
+  restaurant.fetchMenu = () => object;
+  restaurant.consumption = [];
+  restaurant.order = orderFromMenu;
+  restaurant.pay = () => {
+    let total = 0;
+    restaurant.consumption.forEach((element) => {
+
+    });
   };
   return restaurant;
 };
 
-console.log(createMenu({ coxinha: 3.9, sopa: 9.9 }));
-restaurant.order('coxinha');
-restaurant.order('sopa');
-restaurant.pay();
-console.log(restaurant);
+const meuRestaurante = createMenu({ food: { coxinha: 3.9, sopa: 9.9 }, drink: { agua: 3.9, cerveja: 6.9 } });
+meuRestaurante.order('coxinha');
+meuRestaurante.order('cerveja');
+
+meuRestaurante.pay();
 
 module.exports = {
-  createMenu,
-  restaurant,
+  createMenu, orderFromMenu,
 };
