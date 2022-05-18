@@ -93,41 +93,38 @@
 // - retornará o valor somado acrescido de 10%.
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
 
-<<<<<<< HEAD
 const restaurant = {};
 
 const createMenu = (object) => {
-  restaurant.fetchMenu = () => object;
+  const menu = () => object;
+  restaurant.fetchMenu = menu();
+  restaurant.comsumption = [];
+  restaurant.order = function addComsumption(str) {
+    const arr = restaurant.comsumption;
+    arr.push(str);
+  };
+  restaurant.pay = function sum() {
+    if (restaurant.consumption !== undefined) {
+      let total = 0;
+      for (let index = 0; index < restaurant.consumption.length; index += 1) {
+        for (let index2 = 0; index2 < Object.keys(restaurant).length; index2 += 1) {
+          if (restaurant.consumption[index] === Object.keys(restaurant)[index2]) {
+          total += Object.values(restaurant[index2]);
+          }
+        }
+      }
+    }
+  };
   return restaurant;
 };
 
-// const orderFromMenu = (request) => {
-//   restaurant.consumption.push(request);
-//   return restaurant.consumption;
-// };
+console.log(createMenu({ coxinha: 3.9, sopa: 9.9 }));
+restaurant.order('coxinha');
+restaurant.order('sopa');
+restaurant.pay();
+console.log(restaurant);
 
-console.log(createMenu({ arroz: 'arroz', feijao: 'feijao' }));
-// console.log(orderFromMenu('arroz'));
-// console.log(orderFromMenu('feijao'));
-=======
-const addStringToArray = (str) => {
-  obj.consumption.push(str);
+module.exports = {
+  createMenu,
+  restaurant,
 };
-
-const createMenu = (object) => {
-  const funcFetchMenu = () => object;
-  const obj = {
-    fetchMenu: funcFetchMenu(),
-    consumption: [],
-    order: addStringToArray(),
-  };
-  return obj;
-};
-
-const test = createMenu({ teste: 'teste' });
-console.log(test);
-test.consumption.push('oi');
-console.log(test.consumption);
->>>>>>> 4c86cffa6736f29fc28c99326a070055ad70e8f6
-
-module.exports = createMenu;
