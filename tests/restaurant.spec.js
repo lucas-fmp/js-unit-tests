@@ -56,53 +56,36 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
   it('Verifica se a função `createMenu` tem o comportamento esperado', () => {
     // TESTE 1: Verifique se função `createMenu()` retorna um objeto que possui a chave `fetchMenu`, a qual tem como valor uma função.
     // ```
-    // const objetoRetornado = createMenu(); // Retorno: { fetchMenu: () => {}, ... }
+    const test1 = createMenu(); 
+    // Retorno: { fetchMenu: () => {}, ... }
     // ```
-<<<<<<< HEAD
-    expect(createMenu()).toBe({ fetchMenu: () => {}, ... });
-=======
-    expect(createMenu()).toEqual({fetchMenu: () => {}});
->>>>>>> 4c86cffa6736f29fc28c99326a070055ad70e8f6
+    expect(test1.fetchMenu()).toBe('function');
 
     // TESTE 2: Verifique se 'objetoRetornado.fetchMenu()' retorna um objeto cujas chaves são somente `food` e `drink`, 
     // considerando que a função createMenu() foi chamada com o objeto: `{ food: {}, drink: {} }`.
     // ```
-    // const objetoRetornado = createMenu({ food: {}, drink: {} });
-    // objetoRetornado.fetchMenu() // Retorno: { food: {}, drink: {}}
-    // ```
-<<<<<<< HEAD
     const test2 = createMenu({ food: {}, drink: {} });
-    expect(Object.keys(test2.fetchMenu())).toBe([food, drink]);
-=======
-    expect(objetoRetornado.fetchMenu()).toEqual({food: {}, drink: {}});
->>>>>>> 4c86cffa6736f29fc28c99326a070055ad70e8f6
+    expect(test2.fetchMenu()).toEqual({ food: {}, drink: {} });
+    // Retorno: { food: {}, drink: {}}
+    // ```
 
     // TESTE 3: Verifique se o menu passado pra função createMenu() é idêntico ao menu recuperado pela função 'objetoRetornado.fetchMenu()'
     // ```
-    // const objetoRetornado = createMenu(objetoQualquer);
+    const test3 = createMenu({ food: {}, drink: {} });
     // objetoRetornado.fetchMenu() // Retorno: objetoQualquer
     // ```
-<<<<<<< HEAD
-    const test3 = createMenu({'objetoQualquer': 2});
-    expect((test3).fetchMenu()).toBe({'objetoQualquer': 2});
-=======
-    expect({teste: 'teste'}).toEqual(objetoRetornado.fetchMenu())
->>>>>>> 4c86cffa6736f29fc28c99326a070055ad70e8f6
+    expect({ food: {}, drink: {} }).toEqual(test3.fetchMenu());
 
     // Agora faça o PASSO 1 no arquivo `src/restaurant.js`.
     // --------------------------------------------------------------------------------------
 
     // TESTE 4: Verifique se 'objetoRetornado.consumption', após a criação do menu, retorna um array vazio.
     // ```
-    // const objetoRetornado = createMenu(objetoQualquer);
+    // const objetoRetornado = createMenu(objetoQualquer)
+    const test4 = createMenu({ food: {}, drink: {} });;
     // objetoRetornado.consumption // Retorno: []
     // ```
-<<<<<<< HEAD
-    const test4 = createMenu({'test4': 'test4'});
-    expect(test4.consumption).toBe([]);
-=======
-    expect(objetoRetornado.consumption).toEqual([]);
->>>>>>> 4c86cffa6736f29fc28c99326a070055ad70e8f6
+    expect(test4.consumption).toEqual([]);
 
     // Agora faça o PASSO 2 no arquivo `src/restaurant.js`.
     // --------------------------------------------------------------------------------------
@@ -112,15 +95,12 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // ao array retornado em `objetoRetornado.consumption`.
     // ```
     // const objetoRetornado = createMenu(objetoQualquer);
+    const test5 = createMenu({ food: {}, drink: {} });
     // objetoRetornado.order("coxinha");
+    test5.order('coxinha');
     // objetoRetornado.consumption // Retorno: ["coxinha"]
     // ```
-<<<<<<< HEAD
-    const test5 = createMenu({test: 'test',});
-    expect(orderFromMenu('coxinha')).toBe(['coxinha']);
-=======
-    expect(objetoRetornado.order('coxinha')).toMatch(objetoRetornado.consumption);
->>>>>>> 4c86cffa6736f29fc28c99326a070055ad70e8f6
+    expect(test5.consumption).toEqual(['coxinha']);
 
     // Agora faça o PASSO 3 no arquivo `src/restaurant.js`.
     // --------------------------------------------------------------------------------------
@@ -133,6 +113,12 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order("sashimi");
     // objetoRetornado.consumption // Retorno: ["coxinha", "agua", "sopa", "sashimi"]
     // ```
+    const test6 = createMenu({ food: {}, drink: {} });
+    test6.order('coxinha');
+    test6.order('agua');
+    test6.order('sopa');
+    test6.order('sashimi');
+    expect(test6.consumption).toEqual(['coxinha', 'agua', 'sopa', 'sashimi']);
 
     // Agora faça o TESTE 7 deste arquivo.
     // --------------------------------------------------------------------------------------
@@ -144,6 +130,11 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order('coxinha');
     // objetoRetornado.consumption // Retorno: ['coxinha', 'agua', 'coxinha']
     // ```
+    const test7 = createMenu({ food: {}, drink: {} });
+    test7.order('coxinha');
+    test7.order('agua');
+    test7.order('coxinha');
+    expect(test6.consumption).toEqual(['coxinha', 'agua', 'coxinha']);
 
     // Agora faça o TESTE 8 deste arquivo.
     // --------------------------------------------------------------------------------------
@@ -155,6 +146,11 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order('coxinha');
     // objetoRetornado.pay() // Retorno: somaDosPreçosDosPedidos
     // ```
+    const test8 = createMenu({ food: {}, drink: {} });
+    test8.order('coxinha');
+    test8.order('agua');
+    test8.order('coxinha');
+    expect(test8.pay()).toBe()
   
     // Agora faça o PASSO 4 no arquivo `src/restaurant.js`.
   });
