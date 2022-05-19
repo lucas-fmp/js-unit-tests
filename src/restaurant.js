@@ -107,18 +107,19 @@ const createMenu = (object) => {
   restaurant.pay = () => {
     let total = 0;
     restaurant.consumption.forEach((element) => {
-
+      let product = element;
+      if (Object.keys(restaurant.fetchMenu().food).includes(product) === true) {
+        total += restaurant.fetchMenu().food[product];
+        return total;
+      }
+      if (Object.keys(restaurant.fetchMenu().drink).includes(product) === true) {
+        total += restaurant.fetchMenu().drink[product];
+        return total;
+      }
     });
+    return total * 1.1;
   };
   return restaurant;
 };
 
-const meuRestaurante = createMenu({ food: { coxinha: 3.9, sopa: 9.9 }, drink: { agua: 3.9, cerveja: 6.9 } });
-meuRestaurante.order('coxinha');
-meuRestaurante.order('cerveja');
-
-meuRestaurante.pay();
-
-module.exports = {
-  createMenu, orderFromMenu,
-};
+module.exports = { createMenu, orderFromMenu };

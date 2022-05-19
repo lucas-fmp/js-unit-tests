@@ -1,5 +1,4 @@
-const createMenu = require('../src/restaurant');
-const restaurant = require('../src/restaurant');
+const { createMenu, orderFromMenu } = require('../src/restaurant');
  
 /*
   Você é responsável por escrever o código do sistema de pedidos de um restaurante através do qual será possível
@@ -60,7 +59,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     const test1 = createMenu(); 
     // Retorno: { fetchMenu: () => {}, ... }
     // ```
-    expect(test1.fetchMenu()).toBe('function');
+    expect(typeof test1.fetchMenu).toBe('function');
 
     // TESTE 2: Verifique se 'objetoRetornado.fetchMenu()' retorna um objeto cujas chaves são somente `food` e `drink`, 
     // considerando que a função createMenu() foi chamada com o objeto: `{ food: {}, drink: {} }`.
@@ -147,11 +146,11 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order('coxinha');
     // objetoRetornado.pay() // Retorno: somaDosPreçosDosPedidos
     // ```
-    const test8 = createMenu({ food: {}, drink: {} });
+    const test8 = createMenu({ food: { coxinha: 3, sopa: 10 }, drink: { agua: 4, cerveja: 7 } });
     test8.order('coxinha');
     test8.order('agua');
     test8.order('coxinha');
-    expect(test8.pay()).toBe()
+    expect(test8.pay()).toBe(11.00);
   
     // Agora faça o PASSO 4 no arquivo `src/restaurant.js`.
   });
